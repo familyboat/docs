@@ -213,18 +213,18 @@ For example:
 
 ### Import symbols
 
-| Symbol    | Example   | Description                                                                                                                                                         |
-| --------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `1.2.3`   | `1.2.3`   | An exact version. Only this specific version will be used.                                                                                                          |
-| `^1.2.3`  | `^1.2.3`  | Compatible with version 1.2.3. Allows updates that do not change the leftmost non-zero digit. <br>For example, `1.2.4` and `1.3.0` are allowed, but `2.0.0` is not. |
-| `~1.2.3`  | `~1.2.3`  | Approximately equivalent to version 1.2.3. Allows updates to the patch version. <br> For example, `1.2.4` is allowed, but `1.3.0` is not.                           |
-| `>=1.2.3` | `>=1.2.3` | Greater than or equal to version 1.2.3. Any version `1.2.3` or higher is allowed.                                                                                   |
-| `<=1.2.3` | `<=1.2.3` | Less than or equal to version 1.2.3. Any version `1.2.3` or lower is allowed.                                                                                       |
-| `>1.2.3`  | `>1.2.3`  | Greater than version 1.2.3. Only versions higher than `1.2.3` are allowed.                                                                                          |
-| `<1.2.3`  | `<1.2.3`  | Less than version 1.2.3. Only versions lower than `1.2.3` are allowed.                                                                                              |
-| `1.2.x`   | `1.2.x`   | Any patch version within the minor version 1.2. For example, `1.2.0`, `1.2.1`, etc.                                                                                 |
-| `1.x`     | `1.x`     | Any minor and patch version within the major version 1. For example, `1.0.0`, `1.1.0`, `1.2.0`, etc.                                                                |
-| `*`       | `*`       | Any version is allowed.                                                                                                                                             |
+| Symbol    | Description                                                                                                                                                         | Example   |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| `1.2.3`   | An exact version. Only this specific version will be used.                                                                                                          | `1.2.3`   |
+| `^1.2.3`  | Compatible with version 1.2.3. Allows updates that do not change the leftmost non-zero digit. <br>For example, `1.2.4` and `1.3.0` are allowed, but `2.0.0` is not. | `^1.2.3`  |
+| `~1.2.3`  | Approximately equivalent to version 1.2.3. Allows updates to the patch version. <br> For example, `1.2.4` is allowed, but `1.3.0` is not.                           | `~1.2.3`  |
+| `>=1.2.3` | Greater than or equal to version 1.2.3. Any version `1.2.3` or higher is allowed.                                                                                   | `>=1.2.3` |
+| `<=1.2.3` | Less than or equal to version 1.2.3. Any version `1.2.3` or lower is allowed.                                                                                       | `<=1.2.3` |
+| `>1.2.3`  | Greater than version 1.2.3. Only versions higher than `1.2.3` are allowed.                                                                                          | `>1.2.3`  |
+| `<1.2.3`  | Less than version 1.2.3. Only versions lower than `1.2.3` are allowed.                                                                                              | `<1.2.3`  |
+| `1.2.x`   | Any patch version within the minor version 1.2. For example, `1.2.0`, `1.2.1`, etc.                                                                                 | `1.2.x`   |
+| `1.x`     | Any minor and patch version within the major version 1. For example, `1.0.0`, `1.1.0`, `1.2.0`, etc.                                                                | `1.x`     |
+| `*`       | Any version is allowed.                                                                                                                                             | `*`       |
 
 ## Importing by URL
 
