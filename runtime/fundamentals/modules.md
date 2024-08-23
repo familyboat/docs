@@ -1,6 +1,6 @@
 ---
 title: "Using modules in Deno"
-oldUrl: 
+oldUrl:
   - /runtime/manual/basics/modules/
   - /runtime/manual/basics/modules/integrity_checking/
   - /runtime/manual/basics/modules/module_metadata/
@@ -14,17 +14,17 @@ oldUrl:
   - /runtime/manual/advanced/http_imports/
 ---
 
-Deno standardizes the way modules are imported in both JavaScript and TypeScript
-using the
-[ECMAScript module standard](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
-by default. In line with this standard, **file names must be specified in
-full**. You should not omit the file extension and there is no special handling
-of `index.js`.
+Deno uses
+[ECMAScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+exclusively.
 
-```ts
-// Always include the file extension
-import { add } from "./calc.ts";
-```
+Since 2015, ES Modules have been an integral part of the JavaScript
+specification, enabling seamless module usage directly in the browser. Unlike
+CommonJS, which is not natively supported in browsers, ES Modules provide a
+standardized way to manage dependencies and modularize code. Deno aims to narrow
+the gap between browser and server environments by fully embracing ES Modules,
+ensuring a more consistent and streamlined development experience across both
+platforms.
 
 ## Importing modules
 
@@ -84,6 +84,19 @@ you requested to your project imports, unless you specify an exact version:
 # Passing an exact version
 $ deno add @luca/cases@1.0.0
 Add @luca/cases - jsr:@luca/cases@^1.0.0
+```
+
+## Local imports
+
+When importing local modules, use relative paths that start with `./` or `../`
+and include the full file extension. This means you need to specify `.ts`,
+`.js`, `.tsx`, `.jsx`, or `.mjs` extensions explicitly. This ensures that Deno
+correctly resolves the module location relative to the current file. For
+example:
+
+```ts
+// Always include the file extension
+import { add } from "./calc.ts";
 ```
 
 ## Using installed modules
@@ -189,12 +202,29 @@ It is possible to specify a version range for the package you are importing.
 This is done using the `@` symbol followed by a version range specifier, and
 follows the [semver](https://semver.org/) versioning scheme.
 
+For example:
+
 ```bash
-deno add @scopename/mypackage           # latest version
-deno add @scopename/mypackage@16.1.0    # exact version
-deno add @scopename/mypackage@^16.1.0   # latest patch version 16.x
-deno add @scopename/mypackage@~16.1.0   # latest version that doesn't increment the first non-zero portion
+@scopename/mypackage           # latest version
+@scopename/mypackage@16.1.0    # exact version
+@scopename/mypackage@^16.1.0   # latest patch version 16.x
+@scopename/mypackage@~16.1.0   # latest version that doesn't increment the first non-zero portion
 ```
+
+### Import symbols
+
+| Symbol    | Example   | Description                                                                                                                                                         |
+| --------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `1.2.3`   | `1.2.3`   | An exact version. Only this specific version will be used.                                                                                                          |
+| `^1.2.3`  | `^1.2.3`  | Compatible with version 1.2.3. Allows updates that do not change the leftmost non-zero digit. <br>For example, `1.2.4` and `1.3.0` are allowed, but `2.0.0` is not. |
+| `~1.2.3`  | `~1.2.3`  | Approximately equivalent to version 1.2.3. Allows updates to the patch version. <br> For example, `1.2.4` is allowed, but `1.3.0` is not.                           |
+| `>=1.2.3` | `>=1.2.3` | Greater than or equal to version 1.2.3. Any version `1.2.3` or higher is allowed.                                                                                   |
+| `<=1.2.3` | `<=1.2.3` | Less than or equal to version 1.2.3. Any version `1.2.3` or lower is allowed.                                                                                       |
+| `>1.2.3`  | `>1.2.3`  | Greater than version 1.2.3. Only versions higher than `1.2.3` are allowed.                                                                                          |
+| `<1.2.3`  | `<1.2.3`  | Less than version 1.2.3. Only versions lower than `1.2.3` are allowed.                                                                                              |
+| `1.2.x`   | `1.2.x`   | Any patch version within the minor version 1.2. For example, `1.2.0`, `1.2.1`, etc.                                                                                 |
+| `1.x`     | `1.x`     | Any minor and patch version within the major version 1. For example, `1.0.0`, `1.1.0`, `1.2.0`, etc.                                                                |
+| `*`       | `*`       | Any version is allowed.                                                                                                                                             |
 
 ## Importing by URL
 
